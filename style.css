@@ -1,0 +1,133 @@
+
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+--x:50%;
+--y:50%;
+--bg1:#77ff00;
+--bg2:#2ba000;
+--bg3:#006b1b;
+--bg4:#003e10;
+background:radial-gradient(circle at var(--x) var(--y),
+var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+min-height:100vh;
+transition:background .2s,color .3s;
+padding-bottom: 50px;
+}
+
+body.dark{
+--bg1:#1e272e;
+--bg2:#2f3640;
+--bg3:#353b48;
+--bg4:#718093;
+color:white;
+background: radial-gradient(circle at var(--x) var(--y), var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+}
+
+.banner{
+display:flex;
+align-items:center;
+gap:15px;
+padding:15px 25px;
+background:rgba(255,255,255,.9);
+position:sticky;
+top:0;
+z-index:10;
+}
+
+body.dark .banner,
+body.dark footer{
+background:rgba(0,0,0,.85);
+}
+
+.banner h1{margin:0;font-size:22px}
+.banner h2{margin:0;font-size:14px;font-weight:normal}
+
+.character{
+width:60px;height:60px;
+background:white;border-radius:50%;
+border:2px solid black;
+position:relative;
+}
+
+.eye{
+width:10px;height:10px;
+background:black;border-radius:50%;
+position:absolute;top:22px;
+transition:height .15s;
+}
+
+.eye.left{left:16px}
+.eye.right{right:16px}
+
+.eye.blink{
+height:2px;
+}
+
+.mouth{
+width:22px;height:10px;
+border-bottom:3px solid black;
+border-radius:0 0 20px 20px;
+position:absolute;bottom:14px;left:50%;
+transform:translateX(-50%);
+}
+
+.navigation{
+display:flex;flex-wrap:wrap;gap:6px;margin-left:auto;
+}
+
+.navigation a{
+text-decoration:none;color:inherit;
+padding:5px 8px;border-radius:6px;font-size:14px;
+}
+
+.navigation a.active{
+background:black;color:white;
+}
+
+.toggle{
+cursor:pointer;
+padding:5px 10px;
+border-radius:6px;
+border:1px solid currentColor;
+font-size:13px;
+}
+
+.home-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;padding:25px;
+}
+
+.week-card{
+background:white;border-radius:12px;padding:12px;
+text-decoration:none;color:black;
+transition:.3s;
+opacity:0;transform:translateY(30px);
+}
+
+body.dark .week-card{background:#2f3640;color:white}
+
+.week-card.show{opacity:1;transform:translateY(0)}
+.week-card:hover{transform:scale(1.05);box-shadow:0 15px 30px rgba(0,0,0,.2)}
+
+.week-card img{width:100%;border-radius:10px}
+
+main{padding:25px}
+
+footer{
+text-align:center;padding:15px;
+background:rgba(255,255,255,.9);
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+}
+
+@media(max-width:600px){
+.banner{flex-wrap:wrap;justify-content:center;text-align:center}
+.navigation{justify-content:center;width:100%}
+.navigation a{font-size:12px}
+.character{width:50px;height:50px}
+}
